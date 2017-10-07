@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="60">
+    <Properties>
+        <Property name="layout">%d{yyyy-MM-dd HH:mm:ss} %-5p %T --- [%t] %c{22} : [TxId : %X{PtxId} , SpanId : %X{PspanId}] %m%n</Property>
+        <Property name="log-dir">E:\\</Property>
+    </Properties>
+    <Appenders>
+	<Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}"/>
+        </Console>
+        <RollingFile name="RollingTraceFile" filename="${log-dir}/all.log"
+                     filepattern="${log-dir}/all-%d{yyyy-MM-dd-HH}_%i.log" encoding="UTF-8">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1"/>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100" fileIndex = "max"/>
+        </RollingFile>
+        <RollingFile name="RollingErrorFile" filename="${log-dir}/error.log"
+                     filepattern="${log-dir}/error-%d{yyyy-MM-dd-HH}_%i.log" encoding="UTF-8">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1"/>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+
+        <Async name="AsyncRollingTraceFile">
+            <AppenderRef ref="RollingTraceFile"/>
+        </Async>
+
+        <Async name="AsyncRollingErrorFile">
+            <AppenderRef ref="RollingErrorFile"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncRollingTraceFile"/>
+        </Root>
+
+        <Logger name="com.msxf"
+                level="INFO"
+                additivity="false">
+            <AppenderRef ref="AsyncRollingTraceFile"/>
+            <AppenderRef ref="AsyncRollingErrorFile" level="ERROR"/>
+        </Logger>
+    </Loggers>
+</Configuration>

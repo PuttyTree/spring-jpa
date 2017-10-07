@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa.iml" filepath="$PROJECT_DIR$/spring-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa-app/spring-jpa-app.iml" filepath="$PROJECT_DIR$/spring-jpa-app/spring-jpa-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa-common/spring-jpa-common.iml" filepath="$PROJECT_DIR$/spring-jpa-common/spring-jpa-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa-dal/spring-jpa-dal.iml" filepath="$PROJECT_DIR$/spring-jpa-dal/spring-jpa-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa-service/spring-jpa-service.iml" filepath="$PROJECT_DIR$/spring-jpa-service/spring-jpa-service.iml" />
+    </modules>
+  </component>
+</project>
