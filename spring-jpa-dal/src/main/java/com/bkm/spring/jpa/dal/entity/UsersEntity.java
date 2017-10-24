@@ -12,9 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sys_users")
 @NamedQueries({
-	@NamedQuery(name = "Users.findAll", query = "SELECT a FROM Users a")
+	@NamedQuery(name = "UsersEntity.findAll", query = "SELECT a FROM UsersEntity a")
 })
-public class Users extends BaseEntity<Long> {
+public class UsersEntity extends BaseEntity<Long> {
 
 	@Column(name = "username")
 	private String userName;

@@ -1,7 +1,7 @@
 package com.bkm.spring.jpa.service.helper;
 
-import com.bkm.spring.jpa.dal.dsl.QUsers;
-import com.bkm.spring.jpa.dal.entity.Users;
+import com.bkm.spring.jpa.dal.dsl.QUsersEntity;
+import com.bkm.spring.jpa.dal.entity.UsersEntity;
 import com.bkm.spring.jpa.service.request.UsersQuery;
 import com.bkm.spring.jpa.service.vo.base.PageResultWrapper;
 import com.bkm.spring.jpa.service.vo.users.UserSimpleVo;
@@ -14,10 +14,11 @@ import java.util.List;
 
 /**
  * Created by yongli.chen on 2017/10/1.
+ * @author yongli.chen
  */
 public class UsersHelper {
 	public static List<Predicate> toPredicateCondition(UsersQuery query, String user) {
-		QUsers qTaskRetailer = QUsers.users;
+		QUsersEntity qTaskRetailer = QUsersEntity.usersEntity;
 
 		List<Predicate> predicates = new ArrayList<>();
 
@@ -33,15 +34,17 @@ public class UsersHelper {
 	 * @return
 	 */
 	public static PageResultWrapper<UserSimpleVo> toUserSimpleVoPage(
-		SearchResults<Users> pageResult, int pageNo, int pageSize) {
+		SearchResults<UsersEntity> pageResult, int pageNo, int pageSize) {
 		PageResultWrapper<UserSimpleVo> pageResultWrapper = new PageResultWrapper<>();
 		pageResultWrapper.setPageNo(pageNo);
 		pageResultWrapper.setPageSize(pageSize);
-		if (pageResult == null || pageResult.getResults() == null)
+		if (pageResult == null || pageResult.getResults() == null) {
 			return pageResultWrapper;
+		}
+
 		List<UserSimpleVo> postRetailerTaskList = toUserSimpleVoList(pageResult.getResults());
 		pageResultWrapper.setTotal(pageResult.getTotal());
-		//	pageResultWrapper.setRows(postRetailerTaskList);
+		pageResultWrapper.setRows(postRetailerTaskList);
 		return pageResultWrapper;
 	}
 
@@ -51,11 +54,13 @@ public class UsersHelper {
 	 * @param entityList 任务列表
 	 * @return
 	 */
-	public static List<UserSimpleVo> toUserSimpleVoList(List<Users> entityList) {
-		if (entityList == null)
+	public static List<UserSimpleVo> toUserSimpleVoList(List<UsersEntity> entityList) {
+		if (entityList == null) {
 			return null;
+		}
+
 		List<UserSimpleVo> voList = new LinkedList<>();
-		for (Users entity : entityList) {
+		for (UsersEntity entity : entityList) {
 			voList.add(toUserskSimpleVo(entity));
 		}
 		return voList;
@@ -67,9 +72,10 @@ public class UsersHelper {
 	 * @param entity
 	 * @return
 	 */
-	public static UserSimpleVo toUserskSimpleVo(Users entity) {
+	public static UserSimpleVo toUserskSimpleVo(UsersEntity entity) {
 		UserSimpleVo vo = new UserSimpleVo();
 		vo.setId(entity.getId());
+		vo.setUserName(entity.getUserName());
 		// vo.setUnclaimedPosTasks(null);
 		return vo;
 	}

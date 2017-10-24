@@ -19,7 +19,7 @@ public class QueryDslGen {
 		exporter.setTargetFolder(new File("E:/dsl"));
 		exporter.export("com.bkm.spring.jpa.dal.entity");
 
-		//exporter.export(com.bkm.spring.jpa.entity.Users.class.getPackage());
+		//exporter.export(com.bkm.spring.jpa.entity.UsersEntity.class.getPackage());
 
 
 		/*exporter.setKeywords(Keywords.JPA);
@@ -29,6 +29,6 @@ public class QueryDslGen {
 		exporter.setSupertypeAnnotation(MappedSuperclass.class);
 		exporter.setSkipAnnotation(Transient.class);
 		exporter.setTargetFolder(new File("target/generated-sources/java"));
-		exporter.export(com.bkm.spring.jpa.entity.Users.class.getPackage());*/
+		exporter.export(com.bkm.spring.jpa.entity.UsersEntity.class.getPackage());*/
 	}
 }

@@ -1,7 +1,7 @@
 package com.bkm.spring.jpa.dal.biz;
 
-import com.bkm.spring.jpa.dal.dsl.QUsers;
-import com.bkm.spring.jpa.dal.entity.Users;
+import com.bkm.spring.jpa.dal.dsl.QUsersEntity;
+import com.bkm.spring.jpa.dal.entity.UsersEntity;
 import com.bkm.spring.jpa.dal.repository.UsersRepository;
 import com.mysema.query.SearchResults;
 import com.mysema.query.jpa.impl.JPAQuery;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,13 +32,15 @@ public class UsersBiz {
 	 * @param pageSize   分页大小
 	 * @return
 	 */
-	public SearchResults<Users> listPosRetailerPage(List<Predicate> predicates, int pageNo, int pageSize) {
-		QUsers qTaskRetailer = QUsers.users;
+	public SearchResults<UsersEntity> listPosRetailerPage(List<Predicate> predicates, int pageNo, int pageSize) {
+		QUsersEntity qUsersEntity = QUsersEntity.usersEntity;
 		JPAQuery jpaQuery = new JPAQuery(entityManager);
 
-		Predicate[] pts = (Predicate[]) predicates.toArray();
-		return jpaQuery.from(qTaskRetailer).where(pts).offset((pageNo - 1) * pageSize)
-			.limit(pageSize).listResults(qTaskRetailer);
+//		Predicate[] pts = (Predicate[]) predicates.toArray();
+//		return jpaQuery.from(qTaskRetailer).where(pts).offset((pageNo - 1) * pageSize)
+//			.limit(pageSize).listResults(qTaskRetailer);
+		return jpaQuery.from(qUsersEntity).offset((pageNo - 1) * pageSize)
+			.limit(pageSize).listResults(qUsersEntity);
 	}
 
 }

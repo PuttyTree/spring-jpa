@@ -1,7 +1,7 @@
 package com.bkm.spring.jpa.service;
 
 import com.bkm.spring.jpa.dal.biz.UsersBiz;
-import com.bkm.spring.jpa.dal.entity.Users;
+import com.bkm.spring.jpa.dal.entity.UsersEntity;
 import com.bkm.spring.jpa.service.helper.UsersHelper;
 import com.bkm.spring.jpa.service.request.UsersQuery;
 import com.bkm.spring.jpa.service.vo.base.PageResultWrapper;
@@ -28,7 +28,7 @@ public class UsersService {
 	public PageResultWrapper<UserSimpleVo> list(UsersQuery query, String user) {
 
 		List<Predicate> predicates = UsersHelper.toPredicateCondition(query, user);
-		SearchResults<Users> listResults = usersBiz.listPosRetailerPage(predicates, query.getPageNo(), query.getPageSize());
+		SearchResults<UsersEntity> listResults = usersBiz.listPosRetailerPage(predicates, query.getPageNo(), query.getPageSize());
 
 		PageResultWrapper<UserSimpleVo> result = UsersHelper.toUserSimpleVoPage(listResults, query.getPageNo() - 1, query.getPageSize());
 	/*	if (result.getRows() != null && !result.getRows().isEmpty()) {
