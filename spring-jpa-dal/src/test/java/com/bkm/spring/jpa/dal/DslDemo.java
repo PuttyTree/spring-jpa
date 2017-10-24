@@ -23,7 +23,7 @@ public class DslDemo extends BaseDalTest {
 		JPAQuery query = new JPAQuery(em);
 		QUsersEntity qUsers = QUsersEntity.usersEntity;
 		List<UsersEntity> o = query.from(qUsers)
-			.where(qUsers.userName.eq("zhangsan"))
+			.where(qUsers.userName.eq("ddd"))
 			.list(QUsersEntity.usersEntity);
 
 	}
