@@ -17,7 +17,6 @@ public abstract class BaseEntity<ID extends Serializable> implements Persistable
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected ID id;
 
-
 	@Override
 	public ID getId() {
 		return id;

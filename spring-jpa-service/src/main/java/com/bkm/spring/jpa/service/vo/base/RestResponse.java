@@ -7,60 +7,64 @@ import com.bkm.spring.jpa.common.exception.ErrorCode;
  * 标准结果返回
  */
 public class RestResponse<T> {
-	private Integer code;
+    private Integer code;
 
-	private String message;
+    private String message;
 
-	private T data;
+    private T data;
 
 
-	public RestResponse(Integer code, String message) {
-		this.code = code;
-		this.message = message;
-		this.data = null;
-	}
+    public RestResponse(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+        this.data = null;
+    }
 
-	public RestResponse(Integer code, String message, T data) {
-		this.code = code;
-		this.message = message;
-		this.data = data;
-	}
+    public RestResponse(Integer code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
 
-	public RestResponse(ErrorCode errorCode, T data) {
-		this.code = errorCode.getCode();
-		this.message = errorCode.getMessage();
-		this.data = data;
-	}
+    public RestResponse(ErrorCode errorCode, T data) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
+        this.data = data;
+    }
 
-	public static <T> RestResponse<T> success(T data) {
-		return new RestResponse<T>(ErrorCode.SUCCESS, data);
-	}
+    public static <T> RestResponse<T> success(T data) {
+        return new RestResponse<T>(ErrorCode.SUCCESS, data);
+    }
 
-	public static RestResponse<?> fail(ErrorCode errorCode) {
-		return new RestResponse<>(errorCode, null);
-	}
+    public static RestResponse<?> fail(ErrorCode errorCode) {
+        return new RestResponse<>(errorCode, null);
+    }
 
-	public Integer getCode() {
-		return code;
-	}
+    public static <T> RestResponse<T> fail(ErrorCode errorCode, String msg) {
+        return new  RestResponse(errorCode, msg);
+    }
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public T getData() {
-		return data;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setData(T data) {
-		this.data = data;
-	}
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

@@ -15,6 +15,7 @@
             <groupId>com.bkm.spring.jpa</groupId>
             <artifactId>spring-jpa-service</artifactId>
         </dependency>
+        
     </dependencies>
 
 </project>
