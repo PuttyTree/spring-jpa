@@ -2,7 +2,6 @@ package com.bkm.spring.jpa.controller;
 
 import com.bkm.spring.jpa.common.exception.ErrorCode;
 import com.bkm.spring.jpa.dal.entity.UsersEntity;
-import com.bkm.spring.jpa.dto.Foo;
 import com.bkm.spring.jpa.service.UsersService;
 import com.bkm.spring.jpa.service.request.UsersQuery;
 import com.bkm.spring.jpa.service.vo.base.PageResultWrapper;
@@ -67,21 +66,5 @@ public class UserController {
         throws ParseException {
         return RestResponse.success(usersService.list(query, null));
     }
-
-    @PostMapping("/foo")
-    @ApiOperation(value = "获取用户列表")
-    public RestResponse<String> foo(@RequestBody @Validated Foo foo, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            List<ObjectError> list = bindingResult.getAllErrors();
-            StringBuilder sb = new StringBuilder();
-            for (ObjectError error : list) {
-                System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
-                sb.append(error.getDefaultMessage()).append(",");
-            }
-            return RestResponse.fail(ErrorCode.ERR_PARAM, sb.toString());
-        }
-        return RestResponse.success("success");
-    }
-
 
 }
