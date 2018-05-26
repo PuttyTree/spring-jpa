@@ -8,6 +8,8 @@ import com.bkm.spring.jpa.service.vo.base.PageResultWrapper;
 import com.bkm.spring.jpa.service.vo.base.RestResponse;
 import com.bkm.spring.jpa.service.vo.users.UserSimpleVo;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UsersService usersService;
 
@@ -42,6 +45,7 @@ public class UserController {
     @ResponseBody
     public String hello() {
         counterService.increment("LoginController.hello.count");
+        logger.info("CurrentThread={}",Thread.currentThread().getName());
         return "Hello ";
     }
 
